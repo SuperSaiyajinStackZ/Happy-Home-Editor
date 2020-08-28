@@ -1,0 +1,12 @@
+
+3ds/app/banner.bin
+3ds/app/icon.bin
+*.exe
+*.d
+*.o
+*.lst
+*.map
+*.3dsx
+*.cia
+*.elf
+*.smdh
