@@ -4,7 +4,7 @@ A WIP Animal Crossing: Happy Home Designer Save Editor for Nintendo 3DS.
 
 ## Credits
 ## Main Developers
-- [Lukas](https://github.com/RedShyGuy)
+- [RedShyGuy](https://github.com/RedShyGuy)
 - [SuperSaiyajinStackZ](https://github.com/SuperSaiyajinStackZ)
 
 ## Other

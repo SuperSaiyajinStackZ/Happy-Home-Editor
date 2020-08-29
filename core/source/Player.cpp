@@ -1,6 +1,6 @@
 /*
 *   This file is part of Happy-Home-Editor
-*   Copyright (C) 2020 SuperSaiyajinStackZ
+*   Copyright (C) 2020 RedShyGuy, SuperSaiyajinStackZ
 *
 *   This program is free software: you can redistribute it and/or modify
 *   it under the terms of the GNU General Public License as published by
