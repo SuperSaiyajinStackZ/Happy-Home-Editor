@@ -24,32 +24,53 @@
 *         reasonable ways as different from the original version.
 */
 
-/* Save class. */
-#include "checksum.hpp"
-#include "offsets.hpp"
-#include "Sav.hpp"
+#ifndef _HAPPY_HOME_EDITOR_PLAYER_HPP
+#define _HAPPY_HOME_EDITOR_PLAYER_HPP
 
-#define _SAV_SIZE 0x2BE940
+#include "types.hpp"
 
-/* Return the SaveType from a Buffer and load. */
-std::unique_ptr<Sav> Sav::getSave(std::shared_ptr<u8[]> dt, u32 length) {
-	if (length == _SAV_SIZE) {
-		return std::make_unique<Sav>(dt, length);
-	} else {
-		return nullptr;
+#include <memory>
+
+class Player {
+protected:
+	std::shared_ptr<u8[]> pData;
+	u32 pOffset;
+public:
+	~Player() {}
+	Player(std::shared_ptr<u8[]> data, u32 offset) : pData(data), pOffset(offset) { }
+
+	Player(const Player& p) = delete;
+	Player& operator=(const Player& p) = delete;
+
+	u8 hair() const;
+	void hair(u8 v);
+	u8 tan() const;
+	void tan(u8 v);
+	u8 haircolor() const;
+	void haircolor(u8 v);
+	u8 eyes() const;
+	void eyes(u8 v);
+	u8 eyecolor() const;
+	void eyecolor(u8 v);
+
+	u16 headwear() const;
+	void headwear(u16 v);
+	u16 accessories() const;
+	void accessories(u16 v);
+	u16 shirt() const;
+	void shirt(u16 v);
+	u16 pants() const;
+	void pants(u16 v);
+	u16 socks() const;
+	void socks(u16 v);
+	u16 shoes() const;
+	void shoes(u16 v);
+	u16 tools() const;
+	void tools(u16 v);
+private:
+	u8 *playerPointer() const {
+		return this->pData.get() + this->pOffset + 0x1BFA88; // 0x1BFA88 leads to the Player Data.
 	}
-}
+};
 
-std::unique_ptr<Pattern> Sav::pattern(u32 slot) const {
-	if (slot > 119) return nullptr;
-
-	return std::make_unique<Pattern>(this->saveData, PATTERN_OFFSET + (PATTERN_SIZE * slot));
-}
-
-std::unique_ptr<Player> Sav::player() const {
-	return std::make_unique<Player>(this->saveData, 0x1A0);
-}
-
-
-/* Update Checksum. */
-void Sav::Finish() { Checksum::FixCRC32s(this->savePointer()); }
+#endif

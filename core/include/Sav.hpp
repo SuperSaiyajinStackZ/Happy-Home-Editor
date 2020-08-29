@@ -28,11 +28,13 @@
 #define _HAPPY_HOME_EDITOR_SAV_HPP
 
 #include "Pattern.hpp"
+#include "Player.hpp"
 #include "types.hpp"
 
 #include <memory>
 
 class Pattern;
+class Player;
 class Sav {
 protected:
 	std::shared_ptr<u8[]> saveData;
@@ -46,7 +48,9 @@ public:
 	Sav(const Sav& save) = delete;
 	Sav& operator=(const Sav& save) = delete;
 	
-	std::unique_ptr<Pattern> pattern(u32 slot);
+	std::unique_ptr<Pattern> pattern(u32 slot) const;
+	std::unique_ptr<Player> player() const;
+	
 	/* Call this when finished editing. */
 	void Finish(void);
 
