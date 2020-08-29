@@ -28,10 +28,12 @@
 #define _LEAFEDIT_CORE_PATTERN_HPP
 
 #include "PatternImage.hpp"
+#include "Player.hpp"
 
 #include <memory>
 
 class PatternImage;
+class Player;
 class Pattern {
 protected:
 	u32 Offset;
@@ -57,6 +59,7 @@ public:
 	void designtype(u8 v);
 
 	/* Pattern Misc. */
+	void ownPattern(std::unique_ptr<Player> &player);
 	void dumpPattern(const std::string fileName);
 	void injectPattern(const std::string fileName);
 

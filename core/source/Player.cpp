@@ -27,6 +27,7 @@
 #include "offsets.hpp"
 #include "Player.hpp"
 #include "saveUtils.hpp"
+#include "stringUtils.hpp"
 
 /* (ranges from 0 to 0x1F). */
 u8 Player::hair() const {
@@ -122,4 +123,19 @@ u16 Player::tools() const {
 }
 void Player::tools(u16 v) {
 	if (v >= 0x3221 && v <= 0x3277) SaveUtils::Write<u16>(this->playerPointer(), 0x2A, v);
+}
+
+u16 Player::playerid() const {
+	return SaveUtils::Read<u16>(this->playerPointer(), 0x3F528);
+}
+void Player::playerid(u16 v) {
+	SaveUtils::Write<u16>(this->playerPointer(), 0x3F528, v);
+}
+
+std::u16string Player::name() const {
+	return StringUtils::ReadUTF16String(this->playerPointer(), 0x3F52A, 7);
+}
+
+void Player::name(std::u16string v) {
+	StringUtils::WriteUTF16String(this->playerPointer(), v, 0x3F52A, 7);
 }

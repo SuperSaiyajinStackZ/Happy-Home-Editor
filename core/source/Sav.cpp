@@ -29,8 +29,6 @@
 #include "offsets.hpp"
 #include "Sav.hpp"
 
-#define _SAV_SIZE 0x2BE940
-
 /* Return the SaveType from a Buffer and load. */
 std::unique_ptr<Sav> Sav::getSave(std::shared_ptr<u8[]> dt, u32 length) {
 	if (length == _SAV_SIZE) {
@@ -47,7 +45,7 @@ std::unique_ptr<Pattern> Sav::pattern(u32 slot) const {
 }
 
 std::unique_ptr<Player> Sav::player() const {
-	return std::make_unique<Player>(this->saveData, 0x1A0);
+	return std::make_unique<Player>(this->saveData);
 }
 
 

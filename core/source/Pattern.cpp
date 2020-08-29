@@ -87,6 +87,14 @@ void Pattern::designtype(u8 v) {
 	SaveUtils::Write<u8>(this->patternPointer(), 0x69, (patternPointer()[0x69] & 0xF0) | (v & 0x9));
 }
 
+void Pattern::ownPattern(std::unique_ptr<Player> &player) {
+	if (player) {
+		this->creatorname(player->name());
+		this->creatorid(player->playerid());
+		// TODO: Gender.
+	}
+}
+
 /* Dump a Pattern to file. */
 void Pattern::dumpPattern(const std::string fileName) {
 	/* Get Pattern size. 0x9 for default pattern, else pro pattern. */

@@ -29,7 +29,10 @@
 
 #include "types.hpp"
 
-#define PATTERN_OFFSET 0x1BFC58
+#define PATTERN_OFFSET 0x1BFC58 // Also PLAYER_DATA_START + 0x30.
 #define PATTERN_SIZE 0x870
+#define PLAYER_START 0x1A0
+#define PLAYER_DATA_START PLAYER_START + 0x1BFA88
+#define _SAV_SIZE 0x2BE940
 
 #endif

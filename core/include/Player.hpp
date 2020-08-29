@@ -27,6 +27,7 @@
 #ifndef _HAPPY_HOME_EDITOR_PLAYER_HPP
 #define _HAPPY_HOME_EDITOR_PLAYER_HPP
 
+#include "offsets.hpp"
 #include "types.hpp"
 
 #include <memory>
@@ -34,10 +35,9 @@
 class Player {
 protected:
 	std::shared_ptr<u8[]> pData;
-	u32 pOffset;
 public:
 	~Player() {}
-	Player(std::shared_ptr<u8[]> data, u32 offset) : pData(data), pOffset(offset) { }
+	Player(std::shared_ptr<u8[]> data) : pData(data) { }
 
 	Player(const Player& p) = delete;
 	Player& operator=(const Player& p) = delete;
@@ -67,9 +67,14 @@ public:
 	void shoes(u16 v);
 	u16 tools() const;
 	void tools(u16 v);
+	u16 playerid() const;
+	void playerid(u16 v);
+
+	std::u16string name() const;
+	void name(std::u16string v);
 private:
 	u8 *playerPointer() const {
-		return this->pData.get() + this->pOffset + 0x1BFA88; // 0x1BFA88 leads to the Player Data.
+		return this->pData.get() + PLAYER_DATA_START;
 	}
 };
 
