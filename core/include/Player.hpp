@@ -72,6 +72,10 @@ public:
 
 	std::u16string name() const;
 	void name(std::u16string v);
+
+	/* Misc. */
+	void unlockAll();
+	void lockAll();
 private:
 	u8 *playerPointer() const {
 		return this->pData.get() + PLAYER_DATA_START;

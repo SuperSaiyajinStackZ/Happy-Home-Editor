@@ -139,3 +139,95 @@ std::u16string Player::name() const {
 void Player::name(std::u16string v) {
 	StringUtils::WriteUTF16String(this->playerPointer(), v, 0x3F52A, 7);
 }
+
+/* Unlock everything. */
+void Player::unlockAll() {
+	this->playerPointer()[0x3F541] = 0xFE;
+	this->playerPointer()[0x3F542] = 0x0F;
+	this->playerPointer()[0x3F543] = 0x3F;
+	this->playerPointer()[0x3F544] = 0xFF;
+	this->playerPointer()[0x3F547] = 0xFC;
+	SaveUtils::Write<u16>(this->playerPointer(), 0x3F6BA, 0xFFFD);
+	SaveUtils::Write<u16>(this->playerPointer(), 0x3F6BC, 0xEFFF);
+	this->playerPointer()[0x3F548] = 0xFF;
+	SaveUtils::Write<u16>(this->playerPointer(), 0x3F549, 0xF8C3);
+	SaveUtils::Write<u16>(this->playerPointer(), 0x3F64A, 0xFFFF);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F64C, 0xFFFFFFFF);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F650, 0xFFFFFFFF);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F654, 0xFFFFFFFF);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F658, 0xFFFFFFFF);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F65C, 0x3FFFFFFF);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F660, 0xFFFFFE00);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F664, 0xFFFFFFFF);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F668, 0xFFFFFFFF);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F66C, 0xFFFFFFFF);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F670, 0xFFFFFFFF);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F674, 0xFFFFFFFF);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F678, 0xFFFFFFFF);
+	this->playerPointer()[0x3F67C] = 7;
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F62C, 0xFFFFFFFF);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F630, 0x03FFFFFF);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F7E8, 0x0001FFFD);
+	SaveUtils::Write<u16>(this->playerPointer(), 0x3F80A, 0xFFFF);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F80C, 0x007FFFFF);
+
+	this->playerPointer()[0xFE908] = 1; // Ceiling Decor.
+	this->playerPointer()[0xFE910] = 1; // Even More Designs.
+	this->playerPointer()[0xFE914] = 1; // Windows and More.
+	this->playerPointer()[0xFE91C] = 1; // Sound Scenery.
+	this->playerPointer()[0xFE920] = 1; // Refurbishing.
+	this->playerPointer()[0xFE918] = 1; // Happy Home Camera.
+	this->playerPointer()[0xFE92C] = 1; // World Insects.
+	this->playerPointer()[0xFE934] = 1; // World Fish.
+	this->playerPointer()[0xFE93C] = 1; // Ancient Fossils.
+	this->playerPointer()[0xFE944] = 1; // Gyroids.
+	this->playerPointer()[0xFE94C] = 1; // Art Collection.
+	this->playerPointer()[0xFE954] = 1; // Choosing a Layout.
+	this->playerPointer()[0xFE924] = 1; // Styling Machine.
+}
+
+/* Lock everything. */
+void Player::lockAll() {
+	this->playerPointer()[0x3F541] = 0x7E;
+	this->playerPointer()[0x3F542] = 0x08;
+	this->playerPointer()[0x3F543] = 0x32;
+	this->playerPointer()[0x3F544] = 0xF9;
+	this->playerPointer()[0x3F547] = 0;
+	SaveUtils::Write<u16>(this->playerPointer(), 0x3F6BA, 0x0001);
+	SaveUtils::Write<u16>(this->playerPointer(), 0x3F6BC, 0);
+	this->playerPointer()[0x3F548] = 0;
+	SaveUtils::Write<u16>(this->playerPointer(), 0x3F549, 0x6840);
+	SaveUtils::Write<u16>(this->playerPointer(), 0x3F64A, 0);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F64C, 0);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F650, 0x80000000);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F654, 0x06000000);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F658, 0);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F65C, 0);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F660, 0);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F664, 0);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F668, 0);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F66C, 0);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F670, 0);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F674, 0);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F678, 0x00700000);
+	this->playerPointer()[0x3F67C] = 0;
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F62C, 0x00C00000);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F630, 0);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F7E8, 1);
+	SaveUtils::Write<u16>(this->playerPointer(), 0x3F80A, 1);
+	SaveUtils::Write<u32>(this->playerPointer(), 0x3F80C, 0x00600000);
+
+	this->playerPointer()[0xFE908] = 0; // Ceiling Decor.
+	this->playerPointer()[0xFE910] = 0; // Even More Designs.
+	this->playerPointer()[0xFE914] = 0; // Windows and More.
+	this->playerPointer()[0xFE91C] = 0; // Sound Scenery.
+	this->playerPointer()[0xFE920] = 0; // Refurbishing.
+	this->playerPointer()[0xFE918] = 0; // Happy Home Camera.
+	this->playerPointer()[0xFE92C] = 0; // World Insects.
+	this->playerPointer()[0xFE934] = 0; // World Fish.
+	this->playerPointer()[0xFE93C] = 0; // Ancient Fossils.
+	this->playerPointer()[0xFE944] = 0; // Gyroids.
+	this->playerPointer()[0xFE94C] = 0; // Art Collection.
+	this->playerPointer()[0xFE954] = 0; // Choosing a Layout.
+	this->playerPointer()[0xFE924] = 0; // Styling Machine.
+}
