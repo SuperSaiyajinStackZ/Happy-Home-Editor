@@ -24,52 +24,15 @@
 *         reasonable ways as different from the original version.
 */
 
+#ifndef _HAPPY_HOME_EDITOR_OVERLAY_HPP
+#define _HAPPY_HOME_EDITOR_OVERLAY_HPP
+
 #include "common.hpp"
-#include "mainMenu.hpp"
-#include "stringUtils.hpp"
+#include "coreUtils.hpp"
+#include <vector>
 
-#include <3ds.h>
-#include <dirent.h>
-
-bool exiting = false; // Tell, if we should exit.
-
-/* Initialize the services. */
-static void init() {
-	romfsInit();
-	gfxInitDefault();
-	Gui::init();
+namespace Overlays {
+	std::string SelectFile(const std::vector<std::string> fileType, const std::string initialPath, const std::string Text);
 }
 
-/* Deinitialize all services. */
-static void exit() {
-	Gui::exit();
-	gfxExit();
-	romfsExit();
-}
-
-int main() {
-	init();
-	Gui::setScreen(std::make_unique<MainMenu>(), false, true);
-
-	/* Create directories, if not existent. */
-	mkdir("sdmc:/3ds", 0777); // For DSP dump
-	mkdir("sdmc:/3ds/HappyHomeEditor", 0777); // main Path.
-	mkdir("sdmc:/3ds/HappyHomeEditor/Backups", 0777); // Backups path.
-
-	while(aptMainLoop() && !exiting) {
-		u32 hDown = hidKeysDown();
-		hidScanInput();
-		touchPosition touch;
-		hidTouchRead(&touch);
-
-		Gui::clearTextBufs();
-		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-		C2D_TargetClear(Top, TRANSPARENT);
-		C2D_TargetClear(Bottom, TRANSPARENT);
-		Gui::DrawScreen(true);
-		Gui::ScreenLogic(hDown, hidKeysHeld(), touch, false, true);
-		C3D_FrameEnd(0);
-	}
-
-	exit();
-}
+#endif

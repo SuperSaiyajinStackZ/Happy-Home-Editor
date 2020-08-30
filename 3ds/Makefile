@@ -60,9 +60,9 @@ UNIVCORE	:= 	Universal-Core
 SRCCORE		:= 	../core/source ../core/source/utils
 INCCORE		:= ../core/include ../core/include/utils
 
-SOURCES		:=	$(SRCCORE) $(UNIVCORE) source
+SOURCES		:=	$(SRCCORE) $(UNIVCORE) source source/common source/gfx source/overlays source/screens
 DATA		:=	data
-INCLUDES	:=	$(INCCORE) $(UNIVCORE) include
+INCLUDES	:=	$(INCCORE) $(UNIVCORE) include include/common include/gfx include/overlays include/screens
 GRAPHICS	:=	assets/gfx
 ROMFS		:=	romfs
 GFXBUILD	:=	$(ROMFS)/gfx

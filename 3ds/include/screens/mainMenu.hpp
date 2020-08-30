@@ -1,6 +1,6 @@
 /*
 *   This file is part of Happy-Home-Editor
-*   Copyright (C) 2020 SuperSaiyajinStackZ
+*   Copyright (C) 2020 RedShyGuy, SuperSaiyajinStackZ
 *
 *   This program is free software: you can redistribute it and/or modify
 *   it under the terms of the GNU General Public License as published by
@@ -24,15 +24,17 @@
 *         reasonable ways as different from the original version.
 */
 
-#ifndef _HAPPY_HOME_EDITOR_COMMON_HPP
-#define _HAPPY_HOME_EDITOR_COMMON_HPP
+#ifndef _HAPPY_HOME_EDITOR_MAIN_MENU_HPP
+#define _HAPPY_HOME_EDITOR_MAIN_MENU_HPP
 
-#include "gui.hpp"
-#include "screenCommon.hpp"
+#include "common.hpp"
 
-/* Define a few most used colors. */
-#define WHITE C2D_Color32(255, 255, 255, 255)
-#define BLACK C2D_Color32(0, 0, 0, 255)
-#define TRANSPARENT C2D_Color32(0, 0, 0, 0)
+class MainMenu : public Screen {
+public:
+    void Draw(void) const override;
+    void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
+    MainMenu();
+};
+
 
 #endif

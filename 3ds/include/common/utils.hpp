@@ -24,52 +24,21 @@
 *         reasonable ways as different from the original version.
 */
 
+#ifndef _HAPPY_HOME_EDITOR_UTILS_HPP
+#define _HAPPY_HOME_EDITOR_UTILS_HPP
+
 #include "common.hpp"
-#include "mainMenu.hpp"
-#include "stringUtils.hpp"
+#include <citro2d.h>
 
-#include <3ds.h>
-#include <dirent.h>
+#define TEXTURE_TRANSFER_FLAGS \
+	(GX_TRANSFER_FLIP_VERT(0) | GX_TRANSFER_OUT_TILED(1) | GX_TRANSFER_RAW_COPY(0) | \
+	GX_TRANSFER_IN_FORMAT(GX_TRANSFER_FMT_RGBA8) | GX_TRANSFER_OUT_FORMAT(GX_TRANSFER_FMT_RGBA8) | \
+	GX_TRANSFER_SCALING(GX_TRANSFER_SCALE_NO))
 
-bool exiting = false; // Tell, if we should exit.
-
-/* Initialize the services. */
-static void init() {
-	romfsInit();
-	gfxInitDefault();
-	Gui::init();
+/* Citro2D Utils for C2D_Image. */
+namespace C2DUtils {
+	C2D_Image ImageDataToC2DImage(u32 *imageData, u32 width, u32 height, GPU_TEXCOLOR colorFormat);
+	void C2D_ImageDelete(C2D_Image image);
 }
 
-/* Deinitialize all services. */
-static void exit() {
-	Gui::exit();
-	gfxExit();
-	romfsExit();
-}
-
-int main() {
-	init();
-	Gui::setScreen(std::make_unique<MainMenu>(), false, true);
-
-	/* Create directories, if not existent. */
-	mkdir("sdmc:/3ds", 0777); // For DSP dump
-	mkdir("sdmc:/3ds/HappyHomeEditor", 0777); // main Path.
-	mkdir("sdmc:/3ds/HappyHomeEditor/Backups", 0777); // Backups path.
-
-	while(aptMainLoop() && !exiting) {
-		u32 hDown = hidKeysDown();
-		hidScanInput();
-		touchPosition touch;
-		hidTouchRead(&touch);
-
-		Gui::clearTextBufs();
-		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-		C2D_TargetClear(Top, TRANSPARENT);
-		C2D_TargetClear(Bottom, TRANSPARENT);
-		Gui::DrawScreen(true);
-		Gui::ScreenLogic(hDown, hidKeysHeld(), touch, false, true);
-		C3D_FrameEnd(0);
-	}
-
-	exit();
-}
+#endif
