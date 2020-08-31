@@ -143,7 +143,7 @@ void Player::name(std::u16string v) {
 std::unique_ptr<Pattern> Player::pattern(u32 slot) const {
 	if (slot > 119) return nullptr;
 
-	return std::make_unique<Pattern>(this->pData, 0x30 + (PATTERN_SIZE * slot));
+	return std::make_unique<Pattern>(this->pData, PLAYER_DATA_START + 0x30 + (PATTERN_SIZE * slot));
 }
 
 
