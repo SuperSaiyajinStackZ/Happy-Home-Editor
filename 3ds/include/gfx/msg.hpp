@@ -24,35 +24,17 @@
 *         reasonable ways as different from the original version.
 */
 
-#ifndef _HAPPY_HOME_EDITOR_EDITOR_HPP
-#define _HAPPY_HOME_EDITOR_EDITOR_HPP
+#ifndef _HAPPY_HOME_EDITOR_MSG_HPP
+#define _HAPPY_HOME_EDITOR_MSG_HPP
 
-#include "common.hpp"
-#include "coreUtils.hpp"
-#include <vector>
+#include <string>
 
-class Editor : public Screen {
-public:
-	void Draw(void) const override;
-	void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
-	Editor() { }
-private:
-	enum class SaveState {
-		Loaded,
-		Unloaded
-	};
-
-	const std::vector<Button> mainButtons = {
-		{95, 34, 130, 48, "Player"}
-	};
-
-	SaveState loadState = SaveState::Unloaded;
-	bool hasSaved = false;
-	int Selection = 0;
-	bool loadSave();
-	void SaveInitialize();
-	void Saving();
-	std::string saveName;
-};
+namespace Msg {
+	void DisplayWarnMsg(std::string Text); // Display a Warn Message for about 2 seconds.
+	void DisplayWarnMsg2(std::string Text); // Display a Warn Message for about 2 seconds. Used for more text.
+	bool promptMsg(std::string msg); // This will be used for the prompt Messages, which needs confirmation with A or cancel with B.
+	void DisplayWaitMsg(std::string waitMsg, ...); // Will Display a Message, which needs a confirmation with A.
+	void NotImplementedYet(void); // Display a not Implemented Message.
+}
 
 #endif

@@ -28,11 +28,22 @@
 #define _HAPPY_HOME_EDITOR_GFX_HPP
 
 #include "common.hpp"
+#include <string>
+
+struct Button {
+	int X;
+	int Y;
+	int XSize;
+	int YSize;
+	std::string Text;
+};
 
 namespace GFX {
     void DrawTop();
     void DrawBottom();
     void DrawFileBrowseBG(bool isTop);
+
+    void DrawButton(Button btn, float TextSize = 0.5f);
 }
 
 #endif

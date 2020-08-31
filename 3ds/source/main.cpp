@@ -32,6 +32,13 @@
 #include <dirent.h>
 
 bool exiting = false; // Tell, if we should exit.
+touchPosition touch;
+
+/* If Button Position pressed -> Do something. */
+bool buttonTouch(touchPosition touch, Button button) {
+	if (touch.px >= button.X && touch.px <= (button.X + button.XSize) && touch.py >= button.Y && touch.py <= (button.Y + button.YSize)) return true;
+	else return false;
+}
 
 /* Initialize the services. */
 static void init() {
@@ -59,7 +66,6 @@ int main() {
 	while(aptMainLoop() && !exiting) {
 		u32 hDown = hidKeysDown();
 		hidScanInput();
-		touchPosition touch;
 		hidTouchRead(&touch);
 
 		Gui::clearTextBufs();

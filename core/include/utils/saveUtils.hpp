@@ -45,7 +45,7 @@ namespace SaveUtils {
 	template <typename T>
 	void Write(u8 * Buffer, u32 offset, T data) {
 		*reinterpret_cast<T*>(Buffer + offset) = data;
-		if (save) save->changesMade();
+		if (save) save->changesMade(true);
 	}
 }
 

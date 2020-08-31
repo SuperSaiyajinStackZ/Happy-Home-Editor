@@ -26,6 +26,7 @@
 
 #include "editor.hpp"
 #include "overlay.hpp"
+#include "playerEditor.hpp"
 #include "Sav.hpp"
 #include "screenCommon.hpp"
 
@@ -50,7 +51,7 @@ bool Editor::loadSave() {
 		return false;
 	}
 
-	CoreUtils::createBackup(); // Create backup there.
+	
 	
 	return true;
 }
@@ -60,8 +61,10 @@ void Editor::SaveInitialize() {
 
 	if (this->saveName != "") {
 		if (!loadSave()) {
-
+			Msg::DisplayWaitMsg("Savefile invalid.");
 		} else {
+			Msg::DisplayWaitMsg("Creating Backup... please wait.");
+			CoreUtils::createBackup(); // Create backup there.
 			loadState = SaveState::Loaded;
 		}
 	} else {
@@ -78,6 +81,10 @@ void Editor::Draw(void) const {
 		Gui::DrawStringCentered(0, 40, 0.8f, WHITE, "Press X to unlock everything.", 395, 0);
 		Gui::DrawStringCentered(0, 70, 0.8f, WHITE, "Press Start to save and exit.", 395, 0);
 		GFX::DrawBottom();
+
+		for (int i = 0; i < 1; i++) {
+			GFX::DrawButton(this->mainButtons[i]);
+		}
 	}
 }
 
@@ -104,6 +111,10 @@ void Editor::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
 			save->player()->unlockAll();
 		}
 		
+		if (hDown & KEY_A) {
+			Gui::setScreen(std::make_unique<PlayerEditor>(), false, true);
+		}
+
 		if (hDown & KEY_DOWN) {
 			if (this->Selection < 2) this->Selection++;
 		}

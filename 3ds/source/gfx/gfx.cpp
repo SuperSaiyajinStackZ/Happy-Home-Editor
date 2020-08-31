@@ -64,3 +64,8 @@ void GFX::DrawFileBrowseBG(bool isTop) {
 		Gui::Draw_Rect(0, 213, 320, 27, C2D_Color32(0, 0, 128, 255));
 	}
 }
+
+void GFX::DrawButton(Button btn, float TextSize) {
+	Gui::Draw_Rect(btn.X, btn.Y, btn.XSize, btn.YSize, C2D_Color32(0, 128, 128, 255));
+	Gui::DrawStringCentered(btn.X - 160 + (btn.XSize / 2), btn.Y + (btn.YSize / 2) - 10, TextSize, WHITE, btn.Text, btn.XSize - 15, btn.YSize - 10);
+}

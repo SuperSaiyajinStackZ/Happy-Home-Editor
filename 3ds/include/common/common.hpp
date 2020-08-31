@@ -29,6 +29,7 @@
 
 #include "gfx.hpp"
 #include "gui.hpp"
+#include "msg.hpp"
 #include "screenCommon.hpp"
 
 /* Define a few most used colors. */
