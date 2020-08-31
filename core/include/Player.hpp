@@ -28,10 +28,12 @@
 #define _HAPPY_HOME_EDITOR_PLAYER_HPP
 
 #include "offsets.hpp"
+#include "Pattern.hpp"
 #include "types.hpp"
 
 #include <memory>
 
+class Pattern;
 class Player {
 protected:
 	std::shared_ptr<u8[]> pData;
@@ -72,6 +74,7 @@ public:
 
 	std::u16string name() const;
 	void name(std::u16string v);
+	std::unique_ptr<Pattern> pattern(u32 slot) const;
 
 	/* Misc. */
 	void unlockAll();

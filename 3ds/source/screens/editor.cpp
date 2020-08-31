@@ -74,6 +74,9 @@ void Editor::Draw(void) const {
 	if (loadState == SaveState::Loaded) {
 		GFX::DrawTop();
 		Gui::DrawStringCentered(0, -2, 0.8f, WHITE, "Happy Home Editor - Editor", 395, 0);
+
+		Gui::DrawStringCentered(0, 40, 0.8f, WHITE, "Press X to unlock everything.", 395, 0);
+		Gui::DrawStringCentered(0, 70, 0.8f, WHITE, "Press Start to save and exit.", 395, 0);
 		GFX::DrawBottom();
 	}
 }
@@ -96,13 +99,24 @@ void Editor::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
 		if (hDown & KEY_UP) {
 			if (this->Selection > 0) this->Selection--;
 		}
+
+		if (hDown & KEY_X) {
+			save->player()->unlockAll();
+		}
 		
 		if (hDown & KEY_DOWN) {
 			if (this->Selection < 2) this->Selection++;
 		}
 		
+		if (hDown & KEY_START) {
+			this->Saving();
+			Gui::screenBack(false);
+			return;
+		}
+
 		if (hDown & KEY_B) {
 			Gui::screenBack(false);
+			return;
 		}
 		
 	} else {

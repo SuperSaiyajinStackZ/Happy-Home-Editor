@@ -38,12 +38,6 @@ std::unique_ptr<Sav> Sav::getSave(std::shared_ptr<u8[]> dt, u32 length) {
 	}
 }
 
-std::unique_ptr<Pattern> Sav::pattern(u32 slot) const {
-	if (slot > 119) return nullptr;
-
-	return std::make_unique<Pattern>(this->saveData, PATTERN_OFFSET + (PATTERN_SIZE * slot));
-}
-
 std::unique_ptr<Player> Sav::player() const {
 	return std::make_unique<Player>(this->saveData);
 }

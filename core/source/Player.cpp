@@ -140,6 +140,13 @@ void Player::name(std::u16string v) {
 	StringUtils::WriteUTF16String(this->playerPointer(), v, 0x3F52A, 7);
 }
 
+std::unique_ptr<Pattern> Player::pattern(u32 slot) const {
+	if (slot > 119) return nullptr;
+
+	return std::make_unique<Pattern>(this->pData, 0x30 + (PATTERN_SIZE * slot));
+}
+
+
 /* Unlock everything. */
 void Player::unlockAll() {
 	this->playerPointer()[0x3F541] = 0xFE;

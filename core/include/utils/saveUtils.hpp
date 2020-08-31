@@ -32,6 +32,8 @@
 
 #include <string>
 
+extern std::unique_ptr<Sav> save;
+
 namespace SaveUtils {
 	/* Read. */
 	template <typename T>
@@ -43,6 +45,7 @@ namespace SaveUtils {
 	template <typename T>
 	void Write(u8 * Buffer, u32 offset, T data) {
 		*reinterpret_cast<T*>(Buffer + offset) = data;
+		if (save) save->changesMade();
 	}
 }
 

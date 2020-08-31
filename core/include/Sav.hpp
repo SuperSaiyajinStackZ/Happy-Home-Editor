@@ -48,7 +48,6 @@ public:
 	Sav(const Sav& save) = delete;
 	Sav& operator=(const Sav& save) = delete;
 	
-	std::unique_ptr<Pattern> pattern(u32 slot) const;
 	std::unique_ptr<Player> player() const;
 	
 	/* Call this when finished editing. */
