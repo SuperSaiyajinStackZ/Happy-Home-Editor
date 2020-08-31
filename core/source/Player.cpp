@@ -147,6 +147,7 @@ void Player::unlockAll() {
 	this->playerPointer()[0x3F543] = 0x3F;
 	this->playerPointer()[0x3F544] = 0xFF;
 	this->playerPointer()[0x3F547] = 0xFC;
+	this->playerPointer()[0x3F54F] = 0x26;
 	SaveUtils::Write<u16>(this->playerPointer(), 0x3F6BA, 0xFFFD);
 	SaveUtils::Write<u16>(this->playerPointer(), 0x3F6BC, 0xEFFF);
 	this->playerPointer()[0x3F548] = 0xFF;
@@ -193,6 +194,7 @@ void Player::lockAll() {
 	this->playerPointer()[0x3F543] = 0x32;
 	this->playerPointer()[0x3F544] = 0xF9;
 	this->playerPointer()[0x3F547] = 0;
+	this->playerPointer()[0x3F54F] = 0x20;
 	SaveUtils::Write<u16>(this->playerPointer(), 0x3F6BA, 0x0001);
 	SaveUtils::Write<u16>(this->playerPointer(), 0x3F6BC, 0);
 	this->playerPointer()[0x3F548] = 0;
