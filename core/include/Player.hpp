@@ -76,6 +76,8 @@ public:
 	/* Misc. */
 	void unlockAll();
 	void lockAll();
+	void unlockEmotions();
+	void lockEmotions();
 private:
 	u8 *playerPointer() const {
 		return this->pData.get() + PLAYER_DATA_START;
