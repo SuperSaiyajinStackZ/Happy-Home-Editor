@@ -2,6 +2,8 @@
 
 A WIP Animal Crossing: Happy Home Designer Save Editor for Nintendo 3DS.
 
+## NOTE: The Happy Home Designer core will be handled through [LeafEdit-Core](https://github.com/Universal-Team/LeafEdit-Core) and an implementation inside [LeafEdit](https://github.com/Universal-Team/LeafEdit) will be made instead. That means, this project there is basically cancelled / moved.
+
 ## Compilation
 ### Setting up your enviromment
 
